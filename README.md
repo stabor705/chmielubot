@@ -30,3 +30,8 @@ bot.run(TOKEN)
 gdzie TOKEN - token do bota utworzonego przez ciebie na https://discord.com/developers/
 
 Zauważ, że *Cogi* muszą zostać dodane w funkcji *on_ready()*, aby zapewnić, że przy ich dodawaniu bot będzie już prawidłowo zainicjalizowany.
+
+4. Od tego momentu powinieneś móc uruchomić bota
+```bash
+python3 main.py
+```
