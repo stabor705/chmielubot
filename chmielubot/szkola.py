@@ -22,10 +22,11 @@ class Szkola(commands.Cog):
         LIST = 'http://zs5.elk.pl/plan/lista.html'
 
         if day is None: day = date.today().weekday()
-        try:
-            day = int(day) - 1
-        except ValueError:
-            return
+        else:
+            try:
+                day = int(day) - 1
+            except ValueError:
+                return
         if day < 0 or day > 6:
             return await ctx.send(f"Dzień {day} nie jest poprawną formą dnia")
         if day > 4 and day < 7:
