@@ -117,7 +117,7 @@ class Minecraft(commands.Cog):
         await ctx.send("Wyłączam serwer...")
         await self.stop_server()
     
-    @commands.command(name="address")
+    @commands.command(name="address", help="Zwraca adres serwera.")
     async def address(self, ctx):
         ip = requests.get('http://ip.42.pl/raw').text
         await ctx.send(f"{ip}:25565")
