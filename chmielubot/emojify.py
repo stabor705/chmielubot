@@ -2,7 +2,7 @@ from discord.ext import commands
 import discord
 import re
 
-class Emojify(commands.Cog):
+class Utility(commands.Cog):
 
     @commands.command(name="emojify", help="Zamiana znakow alfanumerycznych na emoji")
     async def emojify(self, ctx, *args):
@@ -54,4 +54,3 @@ class Emojify(commands.Cog):
                 output += ":x:"
 
         await ctx.send(output)        
-
