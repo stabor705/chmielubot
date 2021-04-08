@@ -1,8 +1,6 @@
 from discord.ext import commands
 import discord
 import re
-import time
-import datetime
 
 class Utility(commands.Cog):
 
@@ -56,12 +54,3 @@ class Utility(commands.Cog):
                 output += ":x:"
 
         await ctx.send(output)
-        
-    @commands.command(name="matura", help="Pokazuje, ile dni pozostalo do matury")
-    async def matura(self, ctx):
-       exam = datetime.datetime(2021, 5, 4, 9)
-       school_end = datetime.datetime(2021, 4, 30, 9)
-       today = exam.today()
-       time1 = (exam - today)
-       time2 = (school_end - today)
-       await ctx.send(f"```css\nDo końca roku szkolnego pozostało: {time2.days} dni\nDo matury pozostało: {time1.days} dni```")

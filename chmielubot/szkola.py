@@ -2,6 +2,7 @@ from discord.ext import commands
 import requests
 from bs4 import BeautifulSoup
 from datetime import date
+import time
 import random
 
 class Szkola(commands.Cog):
@@ -71,3 +72,12 @@ class Szkola(commands.Cog):
                 res += " " * (len(line) - len(entry[0]) - 1) + entry[1] + "\n"
         prefix = random.choice(["elm", "excel", "python", "vim", "v"])
         await ctx.send(f"```{prefix}\n" + res + "```")
+
+    @commands.command(name="matura", help="Pokazuje, ile dni pozostalo do matury")
+    async def matura(self, ctx):
+       exam = date(2021, 5, 4)
+       school_end = date(2021, 4, 30)
+       today = date.today()
+       time1 = (exam - today)
+       time2 = (school_end - today)
+       await ctx.send(f"```css\nDo końca roku szkolnego pozostało: {time2.days} dni\nDo matury pozostało: {time1.days} dni```")
