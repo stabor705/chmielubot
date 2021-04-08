@@ -53,4 +53,4 @@ class Utility(commands.Cog):
             else:
                 output += ":x:"
 
-        await ctx.send(output)        
+        await ctx.send(output)
