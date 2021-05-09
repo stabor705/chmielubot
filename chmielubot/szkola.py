@@ -5,7 +5,6 @@ from datetime import date
 import time
 import random
 
-
 class Szkola(commands.Cog):
     classes = {
         "4i2": "4i2"
@@ -59,13 +58,11 @@ class Szkola(commands.Cog):
             hours.append(hour)
             parts = lesson.find_all(class_='p n s'.split())
             groups = [parts[x*3:x*3+3] for x in range(len(parts) // 3)]
-            entry = tuple(' '.join([part.text.strip()
-                          for part in group]) for group in groups)
+            entry = tuple(' '.join([part.text.strip() for part in group]) for group in groups)
             if not entry:
                 entry = tuple(" ")
             entries.append(entry)
-        max_line_length = max(
-            [len(entry[0]) + len(hour) + 5 for entry, hour in zip(entries, hours)])
+        max_line_length = max([len(entry[0]) + len(hour) + 5 for entry, hour in zip(entries, hours)])
         stars_length = (max_line_length - len(self.days[day])) // 2
         res = "-" * stars_length + self.days[day] + "-" * stars_length + "\n"
         for idx, hour, entry in zip(range(len(entries)), hours, entries):
@@ -92,5 +89,5 @@ class Szkola(commands.Cog):
             outstr += f"Od rozpoczęcia matur upłynęło: {abs(time1.days)} dni"
         else:
             outstr += f"Do rozpoczęcia matur pozostało: {time1.days} dni"
-       # await ctx.send(f"```css\nDo końca roku szkolnego pozostało: {time2.days} dni\nDo matury pozostało: {time1.days} dni```")
+        #await ctx.send(f"```css\nDo końca roku szkolnego pozostało: {time2.days} dni\nDo matury pozostało: {time1.days} dni```")
         await ctx.send(f"```css\n{outstr}```")
