@@ -75,9 +75,19 @@ class Szkola(commands.Cog):
 
     @commands.command(name="matura", help="Pokazuje, ile dni pozostalo do matury")
     async def matura(self, ctx):
-       exam = date(2021, 5, 4)
-       school_end = date(2021, 4, 30)
-       today = date.today()
-       time1 = (exam - today)
-       time2 = (school_end - today)
-       await ctx.send(f"```css\nDo końca roku szkolnego pozostało: {time2.days} dni\nDo matury pozostało: {time1.days} dni```")
+        exam = date(2021, 5, 4)
+        school_end = date(2021, 4, 30)
+        today = date.today()
+        time1 = (exam - today)
+        time2 = (school_end - today)
+        if time2.days < 0:
+            outstr = f"Od końca roku szkolnego upłynęło: {abs(time2.days)} dni\n"
+        else: 
+            outstr = f"Do końca roku szkolnego pozostało: {time2.days} dni\n"
+    
+        if time1.days < 0:
+            outstr += f"Od rozpoczęcia matur upłynęło: {abs(time1.days)} dni"
+        else:
+            outstr += f"Do rozpoczęcia matur pozostało: {time1.days} dni"
+        #await ctx.send(f"```css\nDo końca roku szkolnego pozostało: {time2.days} dni\nDo matury pozostało: {time1.days} dni```")
+        await ctx.send(f"```css\n{outstr}```")
