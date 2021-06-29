@@ -1,6 +1,7 @@
 from discord.ext import commands
 import discord
 import re
+import requests
 
 class Utility(commands.Cog):
 
@@ -10,7 +11,7 @@ class Utility(commands.Cog):
         #My code look like a shit,
         #Optimization and my english skills sucks
         #But it should work
-        
+
         args = " ".join(args).casefold()
         if len(args) > 90:
             await ctx.send("Tekst przekracza 90 znakow!")
@@ -20,7 +21,7 @@ class Utility(commands.Cog):
             await ctx.message.delete()
         except discord.Forbidden:
             await ctx.send(f"Nie można usunąć wiadomości {ctx.author.name}: Brak wymaganych uprawnien.")
-    
+
         numbers = {
             '1':':one:',
             '2':':two:',
@@ -54,3 +55,8 @@ class Utility(commands.Cog):
                 output += ":x:"
 
         await ctx.send(output)
+
+    @commands.command(name="address", help="Zwraca adres serwera.")
+    async def address(self, ctx):
+        ip = requests.get('http://ip.42.pl/raw').text
+        await ctx.send(f"{ip}")

@@ -29,7 +29,7 @@ class Minecraft(commands.Cog):
         self.log_channel = await self.bot.fetch_channel(802263842397880401)
         self.bot.loop.create_task(self.broadcast_logs())
         self.bot.loop.create_task(self.check_for_players())
-    
+
     async def stop_server(self):
         await self.server.stop()
         await self.bot.change_presence()
@@ -58,7 +58,7 @@ class Minecraft(commands.Cog):
             else:
                 counter = 0
             await self.bot.change_presence(activity=discord.Game(f"Minecraft z {len(players)} osobami."))
-    
+
     def query_players(self):
         output = self.send_rcon_command("/list")
         if output is None:
@@ -74,7 +74,7 @@ class Minecraft(commands.Cog):
         if self.rcon is None and not self.set_rcon():
             return None
         return self.rcon.send_command(command)
-        
+
     def set_rcon(self):
         try:
             self.rcon = RCon("127.0.0.1", 25575, self.rcon_password)
@@ -116,8 +116,3 @@ class Minecraft(commands.Cog):
             return await ctx.send("Serwer jest już wyłączony.")
         await ctx.send("Wyłączam serwer...")
         await self.stop_server()
-    
-    @commands.command(name="address", help="Zwraca adres serwera.")
-    async def address(self, ctx):
-        ip = requests.get('http://ip.42.pl/raw').text
-        await ctx.send(f"{ip}:25565")
